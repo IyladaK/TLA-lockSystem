@@ -253,16 +253,11 @@ begin
     assert req.lock = 1 /\ req.side \in LockSide;
   HandleWestRequest:
     if ~InLock /\ req.side = "west" then
-        WaitForReady:
-            await lockCommand.command = "finished";
-       
-       OpenWestDoor:
-            lockCommand := [command |-> "change_door", open |-> TRUE, side |-> "west"];
-       
-       WestDoorOpened:
-            await lockCommand.command = "finished";
+       await lockCommand.command = "finished";
+       lockCommand := [command |-> "change_door", open |-> TRUE, side |-> "west"];
+       await lockCommand.command = "finished";
     
-    write(permissions, [lock |-> req.lock, granted |-> TRUE]);
+    write(permissions, [ship |-> req.ship, lock |-> req.lock, side |-> req.side]);
     end if;
             
     
@@ -272,7 +267,7 @@ end process;
 end algorithm; *)
 
 
-\* BEGIN TRANSLATION (chksum(pcal) = "eeddda9f" /\ chksum(tla) = "8a67773a")
+\* BEGIN TRANSLATION (chksum(pcal) = "47d5896f" /\ chksum(tla) = "fbbe1d0e")
 VARIABLES lockOrientation, doorsOpen, valvesOpen, waterLevel, shipLocation, 
           shipStatus, lockCommand, requests, permissions, pc
 
@@ -583,37 +578,18 @@ ControlStart == /\ pc[0] = "ControlStart"
 
 HandleWestRequest == /\ pc[0] = "HandleWestRequest"
                      /\ IF ~InLock /\ req.side = "west"
-                           THEN /\ pc' = [pc EXCEPT ![0] = "WaitForReady"]
-                           ELSE /\ pc' = [pc EXCEPT ![0] = "Done"]
+                           THEN /\ lockCommand.command = "finished"
+                                /\ lockCommand' = [command |-> "change_door", open |-> TRUE, side |-> "west"]
+                                /\ lockCommand'.command = "finished"
+                                /\ permissions' = Append(permissions, ([ship |-> req.ship, lock |-> req.lock, side |-> req.side]))
+                           ELSE /\ TRUE
+                                /\ UNCHANGED << lockCommand, permissions >>
+                     /\ pc' = [pc EXCEPT ![0] = "Done"]
                      /\ UNCHANGED << lockOrientation, doorsOpen, valvesOpen, 
                                      waterLevel, shipLocation, shipStatus, 
-                                     lockCommand, requests, permissions, perm, 
-                                     req >>
+                                     requests, perm, req >>
 
-WaitForReady == /\ pc[0] = "WaitForReady"
-                /\ lockCommand.command = "finished"
-                /\ pc' = [pc EXCEPT ![0] = "OpenWestDoor"]
-                /\ UNCHANGED << lockOrientation, doorsOpen, valvesOpen, 
-                                waterLevel, shipLocation, shipStatus, 
-                                lockCommand, requests, permissions, perm, req >>
-
-OpenWestDoor == /\ pc[0] = "OpenWestDoor"
-                /\ lockCommand' = [command |-> "change_door", open |-> TRUE, side |-> "west"]
-                /\ pc' = [pc EXCEPT ![0] = "WestDoorOpened"]
-                /\ UNCHANGED << lockOrientation, doorsOpen, valvesOpen, 
-                                waterLevel, shipLocation, shipStatus, requests, 
-                                permissions, perm, req >>
-
-WestDoorOpened == /\ pc[0] = "WestDoorOpened"
-                  /\ lockCommand.command = "finished"
-                  /\ permissions' = Append(permissions, ([lock |-> req.lock, granted |-> TRUE]))
-                  /\ pc' = [pc EXCEPT ![0] = "Done"]
-                  /\ UNCHANGED << lockOrientation, doorsOpen, valvesOpen, 
-                                  waterLevel, shipLocation, shipStatus, 
-                                  lockCommand, requests, perm, req >>
-
-controlProcess == ControlStart \/ HandleWestRequest \/ WaitForReady
-                     \/ OpenWestDoor \/ WestDoorOpened
+controlProcess == ControlStart \/ HandleWestRequest
 
 Next == controlProcess
            \/ (\E self \in Locks: lockProcess(self))
@@ -625,6 +601,6 @@ Spec == Init /\ [][Next]_vars
 
 =============================================================================
 \* Modification History
-\* Last modified Tue Oct 07 12:11:13 CEST 2025 by iyladakeekarjai
+\* Last modified Tue Oct 07 12:05:14 CEST 2025 by iyladakeekarjai
 \* Last modified Wed Sep 24 11:08:53 CEST 2025 by mvolk
 \* Created Thu Aug 28 11:30:23 CEST 2025 by mvolk

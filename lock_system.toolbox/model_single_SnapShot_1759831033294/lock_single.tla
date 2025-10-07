@@ -251,18 +251,13 @@ begin
     \* wait for request to come through
     read(requests, req);
     assert req.lock = 1 /\ req.side \in LockSide;
-  HandleWestRequest:
+  DirectionCheck:
     if ~InLock /\ req.side = "west" then
-        WaitForReady:
-            await lockCommand.command = "finished";
-       
-       OpenWestDoor:
+        OpenWestDoor:
             lockCommand := [command |-> "change_door", open |-> TRUE, side |-> "west"];
-       
-       WestDoorOpened:
             await lockCommand.command = "finished";
-    
-    write(permissions, [lock |-> req.lock, granted |-> TRUE]);
+        write(permissions, [ship |-> req.ship, lock |-> req.lock, side |-> req.side]);
+        await InLock;
     end if;
             
     
@@ -272,7 +267,7 @@ end process;
 end algorithm; *)
 
 
-\* BEGIN TRANSLATION (chksum(pcal) = "eeddda9f" /\ chksum(tla) = "8a67773a")
+\* BEGIN TRANSLATION (chksum(pcal) = "2290c77b" /\ chksum(tla) = "687cd5b")
 VARIABLES lockOrientation, doorsOpen, valvesOpen, waterLevel, shipLocation, 
           shipStatus, lockCommand, requests, permissions, pc
 
@@ -576,44 +571,31 @@ ControlStart == /\ pc[0] = "ControlStart"
                 /\ requests' = Tail(requests)
                 /\ Assert(req'.lock = 1 /\ req'.side \in LockSide, 
                           "Failure of assertion at line 253, column 5.")
-                /\ pc' = [pc EXCEPT ![0] = "HandleWestRequest"]
+                /\ pc' = [pc EXCEPT ![0] = "DirectionCheck"]
                 /\ UNCHANGED << lockOrientation, doorsOpen, valvesOpen, 
                                 waterLevel, shipLocation, shipStatus, 
                                 lockCommand, permissions, perm >>
 
-HandleWestRequest == /\ pc[0] = "HandleWestRequest"
-                     /\ IF ~InLock /\ req.side = "west"
-                           THEN /\ pc' = [pc EXCEPT ![0] = "WaitForReady"]
-                           ELSE /\ pc' = [pc EXCEPT ![0] = "Done"]
-                     /\ UNCHANGED << lockOrientation, doorsOpen, valvesOpen, 
-                                     waterLevel, shipLocation, shipStatus, 
-                                     lockCommand, requests, permissions, perm, 
-                                     req >>
-
-WaitForReady == /\ pc[0] = "WaitForReady"
-                /\ lockCommand.command = "finished"
-                /\ pc' = [pc EXCEPT ![0] = "OpenWestDoor"]
-                /\ UNCHANGED << lockOrientation, doorsOpen, valvesOpen, 
-                                waterLevel, shipLocation, shipStatus, 
-                                lockCommand, requests, permissions, perm, req >>
+DirectionCheck == /\ pc[0] = "DirectionCheck"
+                  /\ IF ~InLock /\ req.side = "west"
+                        THEN /\ pc' = [pc EXCEPT ![0] = "OpenWestDoor"]
+                        ELSE /\ pc' = [pc EXCEPT ![0] = "Done"]
+                  /\ UNCHANGED << lockOrientation, doorsOpen, valvesOpen, 
+                                  waterLevel, shipLocation, shipStatus, 
+                                  lockCommand, requests, permissions, perm, 
+                                  req >>
 
 OpenWestDoor == /\ pc[0] = "OpenWestDoor"
                 /\ lockCommand' = [command |-> "change_door", open |-> TRUE, side |-> "west"]
-                /\ pc' = [pc EXCEPT ![0] = "WestDoorOpened"]
+                /\ lockCommand'.command = "finished"
+                /\ permissions' = Append(permissions, ([ship |-> req.ship, lock |-> req.lock, side |-> req.side]))
+                /\ InLock
+                /\ pc' = [pc EXCEPT ![0] = "Done"]
                 /\ UNCHANGED << lockOrientation, doorsOpen, valvesOpen, 
                                 waterLevel, shipLocation, shipStatus, requests, 
-                                permissions, perm, req >>
+                                perm, req >>
 
-WestDoorOpened == /\ pc[0] = "WestDoorOpened"
-                  /\ lockCommand.command = "finished"
-                  /\ permissions' = Append(permissions, ([lock |-> req.lock, granted |-> TRUE]))
-                  /\ pc' = [pc EXCEPT ![0] = "Done"]
-                  /\ UNCHANGED << lockOrientation, doorsOpen, valvesOpen, 
-                                  waterLevel, shipLocation, shipStatus, 
-                                  lockCommand, requests, perm, req >>
-
-controlProcess == ControlStart \/ HandleWestRequest \/ WaitForReady
-                     \/ OpenWestDoor \/ WestDoorOpened
+controlProcess == ControlStart \/ DirectionCheck \/ OpenWestDoor
 
 Next == controlProcess
            \/ (\E self \in Locks: lockProcess(self))
@@ -625,6 +607,6 @@ Spec == Init /\ [][Next]_vars
 
 =============================================================================
 \* Modification History
-\* Last modified Tue Oct 07 12:11:13 CEST 2025 by iyladakeekarjai
+\* Last modified Tue Oct 07 11:57:05 CEST 2025 by iyladakeekarjai
 \* Last modified Wed Sep 24 11:08:53 CEST 2025 by mvolk
 \* Created Thu Aug 28 11:30:23 CEST 2025 by mvolk
