@@ -322,8 +322,6 @@ begin
                 lockCommand := [command |-> "change_valve", open |-> FALSE, side |-> "low"];
     LowValvueCLosed:
                 await lockCommand.command = "finished";
-    WaitForWaterLow:
-                await waterLevel = "low";
     
             elsif InLock /\ req.side = "west" then
                 \* Now ship is inside lock and requests east exit
@@ -890,6 +888,6 @@ Spec == Init /\ [][Next]_vars
 
 =============================================================================
 \* Modification History
-\* Last modified Wed Oct 08 06:26:43 CEST 2025 by iyladakeekarjai
+\* Last modified Wed Oct 08 06:20:08 CEST 2025 by iyladakeekarjai
 \* Last modified Wed Sep 24 11:08:53 CEST 2025 by mvolk
 \* Created Thu Aug 28 11:30:23 CEST 2025 by mvolk

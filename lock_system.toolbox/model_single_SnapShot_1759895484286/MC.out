@@ -1,0 +1,1507 @@
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2.19 of 08 August 2024 (rev: 5a47802)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 43 and seed 3239300976047419026 with 6 workers on 8 cores with 608MB heap and 1365MB offheap memory [pid: 14177] (Mac OS X 10.16 x86_64, AdoptOpenJDK 14.0.1 x86_64, OffHeapDiskFPSet, DiskStateQueue).
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file /Users/iyladakeekarjai/Documents/TUe/Y2/Q1/Software Specification/LockSystem/lock_system.toolbox/model_single/MC.tla
+Parsing file /Users/iyladakeekarjai/Documents/TUe/Y2/Q1/Software Specification/LockSystem/lock_system.toolbox/model_single/lock_system.tla
+Parsing file /private/var/folders/82/49nh_qz14ps88s085l16z6th0000gn/T/AppTranslocation/9FBBA00A-92F4-4440-AB67-AED1DC53475D/d/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202408081326/tla2sany/StandardModules/TLC.tla
+Parsing file /Users/iyladakeekarjai/Documents/TUe/Y2/Q1/Software Specification/LockSystem/lock_system.toolbox/model_single/lock_single.tla
+
+Unrecoverable error:
+ -- Unterminated string in line 287.
+
+A unexpected problem was encountered attempting to validate the specification for lock_single
+Parsing file /Users/iyladakeekarjai/Documents/TUe/Y2/Q1/Software Specification/LockSystem/lock_system.toolbox/model_single/lock_data.tla
+Parsing file /private/var/folders/82/49nh_qz14ps88s085l16z6th0000gn/T/AppTranslocation/9FBBA00A-92F4-4440-AB67-AED1DC53475D/d/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202408081326/tla2sany/StandardModules/Integers.tla
+Parsing file /private/var/folders/82/49nh_qz14ps88s085l16z6th0000gn/T/AppTranslocation/9FBBA00A-92F4-4440-AB67-AED1DC53475D/d/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202408081326/tla2sany/StandardModules/Sequences.tla
+Parsing file /private/var/folders/82/49nh_qz14ps88s085l16z6th0000gn/T/AppTranslocation/9FBBA00A-92F4-4440-AB67-AED1DC53475D/d/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202408081326/tla2sany/StandardModules/FiniteSets.tla
+Parsing file /private/var/folders/82/49nh_qz14ps88s085l16z6th0000gn/T/AppTranslocation/9FBBA00A-92F4-4440-AB67-AED1DC53475D/d/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202408081326/tla2sany/StandardModules/Naturals.tla
+Semantic processing of module Naturals
+Semantic processing of module Integers
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module TLC
+Semantic processing of module lock_data
+Semantic processing of module lock_single
+Semantic processing of module lock_system
+Semantic processing of module MC
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (2025-10-08 05:51:21)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2189:0 @!@!@
+Computing initial states...
+@!@!@ENDMSG 2189 @!@!@
+@!@!@STARTMSG 2190:0 @!@!@
+Finished computing initial states: 1 distinct state generated at 2025-10-08 05:51:22.
+@!@!@ENDMSG 2190 @!@!@
+@!@!@STARTMSG 2114:1 @!@!@
+Deadlock reached.
+@!@!@ENDMSG 2114 @!@!@
+@!@!@STARTMSG 2121:1 @!@!@
+The behavior up to this point is:
+@!@!@ENDMSG 2121 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+1: <Initial predicate>
+/\ requests = <<>>
+/\ pc = (0 :> "MainLoop" @@ 1 :> "LockWaitForCommand" @@ 2 :> "ShipNextIteration")
+/\ shipLocation = 0
+/\ permissions = <<>>
+/\ req = [side |-> "", lock |-> 0, ship |-> 0]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "low"
+/\ perm = (2 :> [lock |-> 1, granted |-> FALSE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "finished", open |-> FALSE, side |-> "west"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> FALSE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+2: <MainLoop line 604, col 13 to line 608, col 53 of module lock_single>
+/\ requests = <<>>
+/\ pc = (0 :> "ControlStart" @@ 1 :> "LockWaitForCommand" @@ 2 :> "ShipNextIteration")
+/\ shipLocation = 0
+/\ permissions = <<>>
+/\ req = [side |-> "", lock |-> 0, ship |-> 0]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "low"
+/\ perm = (2 :> [lock |-> 1, granted |-> FALSE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "finished", open |-> FALSE, side |-> "west"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> FALSE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+3: <ShipNextIteration line 442, col 28 to line 462, col 55 of module lock_single>
+/\ requests = <<>>
+/\ pc = (0 :> "ControlStart" @@ 1 :> "LockWaitForCommand" @@ 2 :> "ShipRequestWest")
+/\ shipLocation = 0
+/\ permissions = <<>>
+/\ req = [side |-> "", lock |-> 0, ship |-> 0]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "low"
+/\ perm = (2 :> [lock |-> 1, granted |-> FALSE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "finished", open |-> FALSE, side |-> "west"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> FALSE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+4: <ShipRequestWest line 484, col 26 to line 490, col 53 of module lock_single>
+/\ requests = <<[side |-> "west", lock |-> 1, ship |-> 2]>>
+/\ pc = (0 :> "ControlStart" @@ 1 :> "LockWaitForCommand" @@ 2 :> "ShipWaitForWest")
+/\ shipLocation = 0
+/\ permissions = <<>>
+/\ req = [side |-> "", lock |-> 0, ship |-> 0]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "low"
+/\ perm = (2 :> [lock |-> 1, granted |-> FALSE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "finished", open |-> FALSE, side |-> "west"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> FALSE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+5: <ControlStart line 610, col 17 to line 619, col 65 of module lock_single>
+/\ requests = <<>>
+/\ pc = ( 0 :> "HandleWestRequest" @@
+  1 :> "LockWaitForCommand" @@
+  2 :> "ShipWaitForWest" )
+/\ shipLocation = 0
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "low"
+/\ perm = (2 :> [lock |-> 1, granted |-> FALSE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "finished", open |-> FALSE, side |-> "west"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> FALSE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+6: <HandleWestRequest line 621, col 22 to line 628, col 43 of module lock_single>
+/\ requests = <<>>
+/\ pc = (0 :> "WaitForReady" @@ 1 :> "LockWaitForCommand" @@ 2 :> "ShipWaitForWest")
+/\ shipLocation = 0
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "low"
+/\ perm = (2 :> [lock |-> 1, granted |-> FALSE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "finished", open |-> FALSE, side |-> "west"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> FALSE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+7: <WaitForReady line 630, col 17 to line 635, col 80 of module lock_single>
+/\ requests = <<>>
+/\ pc = (0 :> "OpenWestDoor" @@ 1 :> "LockWaitForCommand" @@ 2 :> "ShipWaitForWest")
+/\ shipLocation = 0
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "low"
+/\ perm = (2 :> [lock |-> 1, granted |-> FALSE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "finished", open |-> FALSE, side |-> "west"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> FALSE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+8: <OpenWestDoor line 637, col 17 to line 642, col 57 of module lock_single>
+/\ requests = <<>>
+/\ pc = (0 :> "WestDoorOpened" @@ 1 :> "LockWaitForCommand" @@ 2 :> "ShipWaitForWest")
+/\ shipLocation = 0
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "low"
+/\ perm = (2 :> [lock |-> 1, granted |-> FALSE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "change_door", open |-> TRUE, side |-> "west"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> FALSE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+9: <LockWaitForCommand line 395, col 29 to line 410, col 56 of module lock_single>
+/\ requests = <<>>
+/\ pc = (0 :> "WestDoorOpened" @@ 1 :> "LockUpdateWaterLevel" @@ 2 :> "ShipWaitForWest")
+/\ shipLocation = 0
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "low"
+/\ perm = (2 :> [lock |-> 1, granted |-> FALSE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "change_door", open |-> TRUE, side |-> "west"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> TRUE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+10: <LockUpdateWaterLevel line 412, col 31 to line 429, col 81 of module lock_single>
+/\ requests = <<>>
+/\ pc = (0 :> "WestDoorOpened" @@ 1 :> "LockCommandFinished" @@ 2 :> "ShipWaitForWest")
+/\ shipLocation = 0
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "low"
+/\ perm = (2 :> [lock |-> 1, granted |-> FALSE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "change_door", open |-> TRUE, side |-> "west"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> TRUE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+11: <LockCommandFinished line 431, col 30 to line 437, col 80 of module lock_single>
+/\ requests = <<>>
+/\ pc = (0 :> "WestDoorOpened" @@ 1 :> "LockWaitForCommand" @@ 2 :> "ShipWaitForWest")
+/\ shipLocation = 0
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "low"
+/\ perm = (2 :> [lock |-> 1, granted |-> FALSE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "finished", open |-> TRUE, side |-> "west"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> TRUE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+12: <WestDoorOpened line 644, col 19 to line 650, col 69 of module lock_single>
+/\ requests = <<>>
+/\ pc = (0 :> "WaitForEnter" @@ 1 :> "LockWaitForCommand" @@ 2 :> "ShipWaitForWest")
+/\ shipLocation = 0
+/\ permissions = <<[lock |-> 1, granted |-> TRUE]>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "low"
+/\ perm = (2 :> [lock |-> 1, granted |-> FALSE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "finished", open |-> TRUE, side |-> "west"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> TRUE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+13: <ShipWaitForWest line 492, col 26 to line 502, col 47 of module lock_single>
+/\ requests = <<>>
+/\ pc = (0 :> "WaitForEnter" @@ 1 :> "LockWaitForCommand" @@ 2 :> "ShipMoveEast")
+/\ shipLocation = 0
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "low"
+/\ perm = (2 :> [lock |-> 1, granted |-> TRUE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "finished", open |-> TRUE, side |-> "west"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> TRUE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+14: <ShipMoveEast line 472, col 23 to line 482, col 73 of module lock_single>
+/\ requests = <<>>
+/\ pc = (0 :> "WaitForEnter" @@ 1 :> "LockWaitForCommand" @@ 2 :> "ShipNextIteration")
+/\ shipLocation = 1
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "low"
+/\ perm = (2 :> [lock |-> 1, granted |-> TRUE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "finished", open |-> TRUE, side |-> "west"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> TRUE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+15: <WaitForEnter line 652, col 17 to line 657, col 80 of module lock_single>
+/\ requests = <<>>
+/\ pc = (0 :> "CloseWestDoor" @@ 1 :> "LockWaitForCommand" @@ 2 :> "ShipNextIteration")
+/\ shipLocation = 1
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "low"
+/\ perm = (2 :> [lock |-> 1, granted |-> TRUE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "finished", open |-> TRUE, side |-> "west"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> TRUE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+16: <CloseWestDoor line 659, col 18 to line 664, col 68 of module lock_single>
+/\ requests = <<>>
+/\ pc = (0 :> "WestDoorClosed" @@ 1 :> "LockWaitForCommand" @@ 2 :> "ShipNextIteration")
+/\ shipLocation = 1
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "low"
+/\ perm = (2 :> [lock |-> 1, granted |-> TRUE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "change_door", open |-> FALSE, side |-> "west"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> TRUE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+17: <LockWaitForCommand line 395, col 29 to line 410, col 56 of module lock_single>
+/\ requests = <<>>
+/\ pc = ( 0 :> "WestDoorClosed" @@
+  1 :> "LockUpdateWaterLevel" @@
+  2 :> "ShipNextIteration" )
+/\ shipLocation = 1
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "low"
+/\ perm = (2 :> [lock |-> 1, granted |-> TRUE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "change_door", open |-> FALSE, side |-> "west"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> FALSE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+18: <LockUpdateWaterLevel line 412, col 31 to line 429, col 81 of module lock_single>
+/\ requests = <<>>
+/\ pc = ( 0 :> "WestDoorClosed" @@
+  1 :> "LockCommandFinished" @@
+  2 :> "ShipNextIteration" )
+/\ shipLocation = 1
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "low"
+/\ perm = (2 :> [lock |-> 1, granted |-> TRUE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "change_door", open |-> FALSE, side |-> "west"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> FALSE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+19: <LockCommandFinished line 431, col 30 to line 437, col 80 of module lock_single>
+/\ requests = <<>>
+/\ pc = (0 :> "WestDoorClosed" @@ 1 :> "LockWaitForCommand" @@ 2 :> "ShipNextIteration")
+/\ shipLocation = 1
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "low"
+/\ perm = (2 :> [lock |-> 1, granted |-> TRUE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "finished", open |-> FALSE, side |-> "west"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> FALSE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+20: <ShipNextIteration line 442, col 28 to line 462, col 55 of module lock_single>
+/\ requests = <<>>
+/\ pc = ( 0 :> "WestDoorClosed" @@
+  1 :> "LockWaitForCommand" @@
+  2 :> "ShipRequestEastInLock" )
+/\ shipLocation = 1
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "low"
+/\ perm = (2 :> [lock |-> 1, granted |-> TRUE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "finished", open |-> FALSE, side |-> "west"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> FALSE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+21: <WestDoorClosed line 666, col 19 to line 672, col 40 of module lock_single>
+/\ requests = <<>>
+/\ pc = ( 0 :> "IncreaseWaterLevel" @@
+  1 :> "LockWaitForCommand" @@
+  2 :> "ShipRequestEastInLock" )
+/\ shipLocation = 1
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "low"
+/\ perm = (2 :> [lock |-> 1, granted |-> TRUE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "finished", open |-> FALSE, side |-> "west"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> FALSE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+22: <IncreaseWaterLevel line 674, col 23 to line 679, col 73 of module lock_single>
+/\ requests = <<>>
+/\ pc = ( 0 :> "WaterLevelIncreased" @@
+  1 :> "LockWaitForCommand" @@
+  2 :> "ShipRequestEastInLock" )
+/\ shipLocation = 1
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "low"
+/\ perm = (2 :> [lock |-> 1, granted |-> TRUE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "change_valve", open |-> TRUE, side |-> "high"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> FALSE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+23: <LockWaitForCommand line 395, col 29 to line 410, col 56 of module lock_single>
+/\ requests = <<>>
+/\ pc = ( 0 :> "WaterLevelIncreased" @@
+  1 :> "LockUpdateWaterLevel" @@
+  2 :> "ShipRequestEastInLock" )
+/\ shipLocation = 1
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> TRUE]
+/\ waterLevel = "low"
+/\ perm = (2 :> [lock |-> 1, granted |-> TRUE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "change_valve", open |-> TRUE, side |-> "high"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> FALSE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+24: <LockUpdateWaterLevel line 412, col 31 to line 429, col 81 of module lock_single>
+/\ requests = <<>>
+/\ pc = ( 0 :> "WaterLevelIncreased" @@
+  1 :> "LockCommandFinished" @@
+  2 :> "ShipRequestEastInLock" )
+/\ shipLocation = 1
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> TRUE]
+/\ waterLevel = "high"
+/\ perm = (2 :> [lock |-> 1, granted |-> TRUE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "change_valve", open |-> TRUE, side |-> "high"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> FALSE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+25: <LockCommandFinished line 431, col 30 to line 437, col 80 of module lock_single>
+/\ requests = <<>>
+/\ pc = ( 0 :> "WaterLevelIncreased" @@
+  1 :> "LockWaitForCommand" @@
+  2 :> "ShipRequestEastInLock" )
+/\ shipLocation = 1
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> TRUE]
+/\ waterLevel = "high"
+/\ perm = (2 :> [lock |-> 1, granted |-> TRUE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "finished", open |-> TRUE, side |-> "high"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> FALSE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+26: <WaterLevelIncreased line 681, col 24 to line 687, col 51 of module lock_single>
+/\ requests = <<>>
+/\ pc = ( 0 :> "CloseHighValve" @@
+  1 :> "LockWaitForCommand" @@
+  2 :> "ShipRequestEastInLock" )
+/\ shipLocation = 1
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> TRUE]
+/\ waterLevel = "high"
+/\ perm = (2 :> [lock |-> 1, granted |-> TRUE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "finished", open |-> TRUE, side |-> "high"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> FALSE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+27: <CloseHighValve line 689, col 19 to line 694, col 69 of module lock_single>
+/\ requests = <<>>
+/\ pc = ( 0 :> "HighValvueCLosed" @@
+  1 :> "LockWaitForCommand" @@
+  2 :> "ShipRequestEastInLock" )
+/\ shipLocation = 1
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> TRUE]
+/\ waterLevel = "high"
+/\ perm = (2 :> [lock |-> 1, granted |-> TRUE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "change_valve", open |-> FALSE, side |-> "high"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> FALSE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+28: <LockWaitForCommand line 395, col 29 to line 410, col 56 of module lock_single>
+/\ requests = <<>>
+/\ pc = ( 0 :> "HighValvueCLosed" @@
+  1 :> "LockUpdateWaterLevel" @@
+  2 :> "ShipRequestEastInLock" )
+/\ shipLocation = 1
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "high"
+/\ perm = (2 :> [lock |-> 1, granted |-> TRUE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "change_valve", open |-> FALSE, side |-> "high"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> FALSE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+29: <ShipRequestEastInLock line 504, col 32 to line 511, col 53 of module lock_single>
+/\ requests = <<[side |-> "east", lock |-> 1, ship |-> 2]>>
+/\ pc = ( 0 :> "HighValvueCLosed" @@
+  1 :> "LockUpdateWaterLevel" @@
+  2 :> "ShipWaitForEastInLock" )
+/\ shipLocation = 1
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "high"
+/\ perm = (2 :> [lock |-> 1, granted |-> TRUE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "change_valve", open |-> FALSE, side |-> "high"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> FALSE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+30: <LockUpdateWaterLevel line 412, col 31 to line 429, col 81 of module lock_single>
+/\ requests = <<[side |-> "east", lock |-> 1, ship |-> 2]>>
+/\ pc = ( 0 :> "HighValvueCLosed" @@
+  1 :> "LockCommandFinished" @@
+  2 :> "ShipWaitForEastInLock" )
+/\ shipLocation = 1
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "high"
+/\ perm = (2 :> [lock |-> 1, granted |-> TRUE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "change_valve", open |-> FALSE, side |-> "high"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> FALSE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+31: <LockCommandFinished line 431, col 30 to line 437, col 80 of module lock_single>
+/\ requests = <<[side |-> "east", lock |-> 1, ship |-> 2]>>
+/\ pc = ( 0 :> "HighValvueCLosed" @@
+  1 :> "LockWaitForCommand" @@
+  2 :> "ShipWaitForEastInLock" )
+/\ shipLocation = 1
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "high"
+/\ perm = (2 :> [lock |-> 1, granted |-> TRUE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "finished", open |-> FALSE, side |-> "high"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> FALSE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+32: <HighValvueCLosed line 696, col 21 to line 702, col 42 of module lock_single>
+/\ requests = <<[side |-> "east", lock |-> 1, ship |-> 2]>>
+/\ pc = ( 0 :> "OpenEastDoor" @@
+  1 :> "LockWaitForCommand" @@
+  2 :> "ShipWaitForEastInLock" )
+/\ shipLocation = 1
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "high"
+/\ perm = (2 :> [lock |-> 1, granted |-> TRUE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "finished", open |-> FALSE, side |-> "high"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> FALSE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+33: <OpenEastDoor line 704, col 17 to line 709, col 57 of module lock_single>
+/\ requests = <<[side |-> "east", lock |-> 1, ship |-> 2]>>
+/\ pc = ( 0 :> "EastDoorOpened" @@
+  1 :> "LockWaitForCommand" @@
+  2 :> "ShipWaitForEastInLock" )
+/\ shipLocation = 1
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "high"
+/\ perm = (2 :> [lock |-> 1, granted |-> TRUE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "change_door", open |-> TRUE, side |-> "east"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> FALSE, east |-> FALSE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+34: <LockWaitForCommand line 395, col 29 to line 410, col 56 of module lock_single>
+/\ requests = <<[side |-> "east", lock |-> 1, ship |-> 2]>>
+/\ pc = ( 0 :> "EastDoorOpened" @@
+  1 :> "LockUpdateWaterLevel" @@
+  2 :> "ShipWaitForEastInLock" )
+/\ shipLocation = 1
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "high"
+/\ perm = (2 :> [lock |-> 1, granted |-> TRUE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "change_door", open |-> TRUE, side |-> "east"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> FALSE, east |-> TRUE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+35: <LockUpdateWaterLevel line 412, col 31 to line 429, col 81 of module lock_single>
+/\ requests = <<[side |-> "east", lock |-> 1, ship |-> 2]>>
+/\ pc = ( 0 :> "EastDoorOpened" @@
+  1 :> "LockCommandFinished" @@
+  2 :> "ShipWaitForEastInLock" )
+/\ shipLocation = 1
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "high"
+/\ perm = (2 :> [lock |-> 1, granted |-> TRUE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "change_door", open |-> TRUE, side |-> "east"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> FALSE, east |-> TRUE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+36: <LockCommandFinished line 431, col 30 to line 437, col 80 of module lock_single>
+/\ requests = <<[side |-> "east", lock |-> 1, ship |-> 2]>>
+/\ pc = ( 0 :> "EastDoorOpened" @@
+  1 :> "LockWaitForCommand" @@
+  2 :> "ShipWaitForEastInLock" )
+/\ shipLocation = 1
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "high"
+/\ perm = (2 :> [lock |-> 1, granted |-> TRUE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "finished", open |-> TRUE, side |-> "east"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> FALSE, east |-> TRUE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+37: <EastDoorOpened line 711, col 19 to line 717, col 40 of module lock_single>
+/\ requests = <<[side |-> "east", lock |-> 1, ship |-> 2]>>
+/\ pc = (0 :> "WaitExit" @@ 1 :> "LockWaitForCommand" @@ 2 :> "ShipWaitForEastInLock")
+/\ shipLocation = 1
+/\ permissions = <<>>
+/\ req = [side |-> "west", lock |-> 1, ship |-> 2]
+/\ valvesOpen = [low |-> FALSE, high |-> FALSE]
+/\ waterLevel = "high"
+/\ perm = (2 :> [lock |-> 1, granted |-> TRUE])
+/\ shipStatus = "go_to_east"
+/\ lockCommand = [command |-> "finished", open |-> TRUE, side |-> "east"]
+/\ lockOrientation = "west_low"
+/\ doorsOpen = [west |-> FALSE, east |-> TRUE]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2201:0 @!@!@
+The coverage statistics at 2025-10-08 05:51:22
+@!@!@ENDMSG 2201 @!@!@
+@!@!@STARTMSG 2773:0 @!@!@
+<Init line 377, col 1 to line 377, col 4 of module lock_single>: 2:2
+@!@!@ENDMSG 2773 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 378, col 9 to line 393, col 66 of module lock_single: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<LockWaitForCommand line 395, col 1 to line 395, col 24 of module lock_single>: 10:18
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 395, col 32 to line 395, col 62 of module lock_single: 120
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 395, col 32 to line 395, col 39 of module lock_single: 102
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 396, col 32 to line 396, col 64 of module lock_single: 83
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 396, col 32 to line 396, col 50 of module lock_single: 65
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 397, col 35 to line 397, col 69 of module lock_single: 18
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 398, col 43 to line 398, col 112 of module lock_single: 10
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 399, col 43 to line 399, col 62 of module lock_single: 10
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 400, col 46 to line 400, col 81 of module lock_single: 8
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 401, col 51 to line 401, col 125 of module lock_single: 8
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 404, col 54 to line 404, col 73 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 405, col 43 to line 405, col 61 of module lock_single: 8
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 406, col 32 to line 406, col 81 of module lock_single: 18
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 407, col 32 to line 410, col 56 of module lock_single: 18
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<LockUpdateWaterLevel line 412, col 1 to line 412, col 26 of module lock_single>: 10:19
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 412, col 34 to line 412, col 66 of module lock_single: 116
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 412, col 34 to line 412, col 41 of module lock_single: 97
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 413, col 37 to line 413, col 53 of module lock_single: 19
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 414, col 45 to line 414, col 63 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 415, col 48 to line 416, col 102 of module lock_single: 19
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 415, col 49 to line 415, col 97 of module lock_single: 19
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 416, col 53 to line 416, col 101 of module lock_single: 17
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 417, col 53 to line 417, col 74 of module lock_single: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 418, col 59 to line 418, col 76 of module lock_single: 17
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 419, col 64 to line 419, col 86 of module lock_single: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 420, col 70 to line 421, col 124 of module lock_single: 13
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 420, col 71 to line 420, col 119 of module lock_single: 13
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 421, col 75 to line 421, col 123 of module lock_single: 9
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 422, col 75 to line 422, col 97 of module lock_single: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 423, col 78 to line 423, col 81 of module lock_single: 9
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 424, col 78 to line 424, col 97 of module lock_single: 9
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 425, col 34 to line 425, col 82 of module lock_single: 19
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 426, col 34 to line 429, col 81 of module lock_single: 19
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<LockCommandFinished line 431, col 1 to line 431, col 25 of module lock_single>: 11:18
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 431, col 33 to line 431, col 64 of module lock_single: 110
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 431, col 33 to line 431, col 40 of module lock_single: 92
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 432, col 33 to line 432, col 90 of module lock_single: 18
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 433, col 33 to line 433, col 80 of module lock_single: 18
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 434, col 33 to line 437, col 80 of module lock_single: 18
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<ShipNextIteration line 442, col 1 to line 442, col 23 of module lock_single>: 8:26
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 442, col 31 to line 442, col 60 of module lock_single: 113
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 442, col 31 to line 442, col 38 of module lock_single: 87
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 443, col 34 to line 443, col 58 of module lock_single: 26
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 444, col 45 to line 444, col 66 of module lock_single: 26
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 445, col 53 to line 445, col 101 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 446, col 56 to line 446, col 62 of module lock_single: 26
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 447, col 61 to line 447, col 108 of module lock_single: 3
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 448, col 61 to line 448, col 114 of module lock_single: 23
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 451, col 64 to line 451, col 112 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 453, col 75 to line 453, col 119 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 454, col 75 to line 454, col 125 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 457, col 53 to line 457, col 96 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 458, col 31 to line 462, col 55 of module lock_single: 26
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<ShipGoalReachedEast line 464, col 1 to line 464, col 25 of module lock_single>: 0:0
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 464, col 33 to line 464, col 64 of module lock_single: 85
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 465, col 33 to line 465, col 60 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 466, col 33 to line 466, col 79 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 467, col 33 to line 470, col 80 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<ShipMoveEast line 472, col 1 to line 472, col 18 of module lock_single>: 1:2
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 472, col 26 to line 472, col 50 of module lock_single: 87
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 472, col 26 to line 472, col 33 of module lock_single: 85
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 473, col 29 to line 473, col 46 of module lock_single: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 474, col 34 to line 476, col 68 of module lock_single: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 478, col 37 to line 478, col 58 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 479, col 26 to line 479, col 72 of module lock_single: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 480, col 26 to line 482, col 73 of module lock_single: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<ShipRequestWest line 484, col 1 to line 484, col 21 of module lock_single>: 2:3
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 484, col 29 to line 484, col 56 of module lock_single: 87
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 484, col 29 to line 484, col 36 of module lock_single: 84
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 485, col 29 to line 485, col 104 of module lock_single: 3
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 486, col 29 to line 486, col 73 of module lock_single: 3
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 487, col 29 to line 490, col 53 of module lock_single: 3
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<ShipWaitForWest line 492, col 1 to line 492, col 21 of module lock_single>: 1:2
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 492, col 29 to line 492, col 56 of module lock_single: 85
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 492, col 29 to line 492, col 36 of module lock_single: 83
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 493, col 29 to line 493, col 47 of module lock_single: 13
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 493, col 29 to line 493, col 39 of module lock_single: 11
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 493, col 44 to line 493, col 47 of module lock_single: 11
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 494, col 29 to line 494, col 77 of module lock_single: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 495, col 29 to line 495, col 60 of module lock_single: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 496, col 29 to line 497, col 82 of module lock_single: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 498, col 29 to line 498, col 70 of module lock_single: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 499, col 29 to line 502, col 47 of module lock_single: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<ShipRequestEastInLock line 504, col 1 to line 504, col 27 of module lock_single>: 8:23
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 504, col 35 to line 504, col 68 of module lock_single: 105
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 504, col 35 to line 504, col 42 of module lock_single: 82
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 505, col 35 to line 505, col 110 of module lock_single: 23
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 506, col 35 to line 506, col 85 of module lock_single: 23
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 507, col 35 to line 511, col 53 of module lock_single: 23
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<ShipWaitForEastInLock line 513, col 1 to line 513, col 27 of module lock_single>: 0:0
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 513, col 35 to line 513, col 68 of module lock_single: 81
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 514, col 35 to line 514, col 53 of module lock_single: 22
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 515, col 35 to line 515, col 83 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 516, col 35 to line 516, col 66 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 519, col 35 to line 519, col 76 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 520, col 35 to line 523, col 76 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<ShipTurnAround line 525, col 1 to line 525, col 20 of module lock_single>: 0:0
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 525, col 28 to line 525, col 54 of module lock_single: 81
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 526, col 28 to line 526, col 104 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 527, col 28 to line 527, col 74 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 528, col 28 to line 530, col 75 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<ShipGoalReachedWest line 532, col 1 to line 532, col 25 of module lock_single>: 0:0
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 532, col 33 to line 532, col 64 of module lock_single: 81
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 533, col 33 to line 533, col 60 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 534, col 33 to line 534, col 79 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 535, col 33 to line 538, col 80 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<ShipMoveWest line 540, col 1 to line 540, col 18 of module lock_single>: 0:0
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 540, col 26 to line 540, col 50 of module lock_single: 81
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 544, col 37 to line 544, col 68 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 546, col 37 to line 546, col 58 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 547, col 26 to line 547, col 72 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 548, col 26 to line 550, col 73 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<ShipRequestEast line 552, col 1 to line 552, col 21 of module lock_single>: 0:0
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 552, col 29 to line 552, col 56 of module lock_single: 81
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 553, col 29 to line 553, col 104 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 554, col 29 to line 554, col 73 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 555, col 29 to line 558, col 53 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<ShipWaitForEast line 560, col 1 to line 560, col 21 of module lock_single>: 0:0
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 560, col 29 to line 560, col 56 of module lock_single: 81
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 562, col 29 to line 562, col 77 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 563, col 29 to line 563, col 60 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 566, col 29 to line 566, col 70 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 567, col 29 to line 570, col 47 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<ShipRequestWestInLock line 572, col 1 to line 572, col 27 of module lock_single>: 0:0
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 572, col 35 to line 572, col 68 of module lock_single: 81
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 573, col 35 to line 573, col 110 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 574, col 35 to line 574, col 85 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 575, col 35 to line 579, col 53 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<ShipWaitForWestInLock line 581, col 1 to line 581, col 27 of module lock_single>: 0:0
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 581, col 35 to line 581, col 68 of module lock_single: 81
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 583, col 35 to line 583, col 83 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 584, col 35 to line 584, col 66 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 587, col 35 to line 587, col 76 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 588, col 35 to line 591, col 76 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<MainLoop line 604, col 1 to line 604, col 8 of module lock_single>: 1:4
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 604, col 16 to line 604, col 33 of module lock_single: 121
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 604, col 16 to line 604, col 20 of module lock_single: 117
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 605, col 16 to line 605, col 54 of module lock_single: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 606, col 16 to line 608, col 53 of module lock_single: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<ControlStart line 610, col 1 to line 610, col 12 of module lock_single>: 1:2
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 610, col 20 to line 610, col 41 of module lock_single: 118
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 610, col 20 to line 610, col 24 of module lock_single: 116
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 611, col 20 to line 611, col 35 of module lock_single: 8
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 611, col 20 to line 611, col 27 of module lock_single: 6
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 611, col 32 to line 611, col 35 of module lock_single: 6
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 612, col 20 to line 612, col 40 of module lock_single: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 613, col 20 to line 613, col 45 of module lock_single: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 614, col 20 to line 615, col 73 of module lock_single: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 616, col 20 to line 616, col 63 of module lock_single: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 617, col 20 to line 619, col 65 of module lock_single: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<HandleWestRequest line 621, col 1 to line 621, col 17 of module lock_single>: 1:2
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 621, col 25 to line 621, col 51 of module lock_single: 117
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 621, col 25 to line 621, col 29 of module lock_single: 115
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 622, col 28 to line 622, col 55 of module lock_single: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 623, col 33 to line 623, col 74 of module lock_single: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 624, col 36 to line 624, col 70 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 625, col 25 to line 628, col 43 of module lock_single: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<WaitForReady line 630, col 1 to line 630, col 12 of module lock_single>: 1:2
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 630, col 20 to line 630, col 41 of module lock_single: 116
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 630, col 20 to line 630, col 24 of module lock_single: 114
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 631, col 20 to line 631, col 51 of module lock_single: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 631, col 20 to line 631, col 38 of module lock_single: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 632, col 20 to line 632, col 58 of module lock_single: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 633, col 20 to line 635, col 80 of module lock_single: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<OpenWestDoor line 637, col 1 to line 637, col 12 of module lock_single>: 1:2
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 637, col 20 to line 637, col 41 of module lock_single: 115
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 637, col 20 to line 637, col 24 of module lock_single: 113
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 638, col 20 to line 638, col 93 of module lock_single: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 639, col 20 to line 639, col 60 of module lock_single: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 640, col 20 to line 642, col 57 of module lock_single: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<WestDoorOpened line 644, col 1 to line 644, col 14 of module lock_single>: 1:2
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 644, col 22 to line 644, col 45 of module lock_single: 114
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 644, col 22 to line 644, col 26 of module lock_single: 112
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 645, col 22 to line 645, col 53 of module lock_single: 10
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 645, col 22 to line 645, col 40 of module lock_single: 8
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 646, col 22 to line 646, col 96 of module lock_single: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 647, col 22 to line 647, col 60 of module lock_single: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 648, col 22 to line 650, col 69 of module lock_single: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<WaitForEnter line 652, col 1 to line 652, col 12 of module lock_single>: 1:4
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 652, col 20 to line 652, col 41 of module lock_single: 115
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 652, col 20 to line 652, col 24 of module lock_single: 111
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 59, col 21 to line 59, col 36 of module lock_data: 12
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 59, col 21 to line 59, col 32 of module lock_data: 8
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 311, col 18 to line 311, col 29 of module lock_single: 8
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 654, col 20 to line 654, col 59 of module lock_single: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 655, col 20 to line 657, col 80 of module lock_single: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<CloseWestDoor line 659, col 1 to line 659, col 13 of module lock_single>: 2:4
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 659, col 21 to line 659, col 43 of module lock_single: 114
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 659, col 21 to line 659, col 25 of module lock_single: 110
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 660, col 21 to line 660, col 95 of module lock_single: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 661, col 21 to line 661, col 61 of module lock_single: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 662, col 21 to line 664, col 68 of module lock_single: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<WestDoorClosed line 666, col 1 to line 666, col 14 of module lock_single>: 3:5
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 666, col 22 to line 666, col 45 of module lock_single: 114
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 666, col 22 to line 666, col 26 of module lock_single: 109
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 667, col 22 to line 667, col 53 of module lock_single: 22
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 667, col 22 to line 667, col 40 of module lock_single: 17
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 668, col 22 to line 668, col 66 of module lock_single: 5
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 669, col 22 to line 672, col 40 of module lock_single: 5
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<IncreaseWaterLevel line 674, col 1 to line 674, col 18 of module lock_single>: 2:4
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 674, col 26 to line 674, col 53 of module lock_single: 112
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 674, col 26 to line 674, col 30 of module lock_single: 108
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 675, col 26 to line 675, col 100 of module lock_single: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 676, col 26 to line 676, col 71 of module lock_single: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 677, col 26 to line 679, col 73 of module lock_single: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<WaterLevelIncreased line 681, col 1 to line 681, col 19 of module lock_single>: 3:4
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 681, col 27 to line 681, col 55 of module lock_single: 111
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 681, col 27 to line 681, col 31 of module lock_single: 107
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 682, col 27 to line 682, col 58 of module lock_single: 20
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 682, col 27 to line 682, col 45 of module lock_single: 16
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 683, col 27 to line 683, col 67 of module lock_single: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 684, col 27 to line 687, col 51 of module lock_single: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<CloseHighValve line 689, col 1 to line 689, col 14 of module lock_single>: 3:4
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 689, col 22 to line 689, col 45 of module lock_single: 110
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 689, col 22 to line 689, col 26 of module lock_single: 106
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 690, col 22 to line 690, col 97 of module lock_single: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 691, col 22 to line 691, col 64 of module lock_single: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 692, col 22 to line 694, col 69 of module lock_single: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<HighValvueCLosed line 696, col 1 to line 696, col 16 of module lock_single>: 3:4
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 696, col 24 to line 696, col 49 of module lock_single: 109
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 696, col 24 to line 696, col 28 of module lock_single: 105
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 697, col 24 to line 697, col 55 of module lock_single: 21
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 697, col 24 to line 697, col 42 of module lock_single: 17
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 698, col 24 to line 698, col 62 of module lock_single: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 699, col 24 to line 702, col 42 of module lock_single: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<OpenEastDoor line 704, col 1 to line 704, col 12 of module lock_single>: 3:4
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 704, col 20 to line 704, col 41 of module lock_single: 108
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 704, col 20 to line 704, col 24 of module lock_single: 104
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 705, col 20 to line 705, col 93 of module lock_single: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 706, col 20 to line 706, col 60 of module lock_single: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 707, col 20 to line 709, col 57 of module lock_single: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<EastDoorOpened line 711, col 1 to line 711, col 14 of module lock_single>: 3:4
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 711, col 22 to line 711, col 45 of module lock_single: 107
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 711, col 22 to line 711, col 26 of module lock_single: 103
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 712, col 22 to line 712, col 53 of module lock_single: 20
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 712, col 22 to line 712, col 40 of module lock_single: 16
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 713, col 22 to line 713, col 56 of module lock_single: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 714, col 22 to line 717, col 40 of module lock_single: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<WaitExit line 719, col 1 to line 719, col 8 of module lock_single>: 0:0
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 719, col 16 to line 719, col 33 of module lock_single: 102
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 720, col 16 to line 720, col 22 of module lock_single: 3
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 721, col 16 to line 721, col 50 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 722, col 16 to line 724, col 53 of module lock_single: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2774:0 @!@!@
+<TypeOK line 321, col 1 to line 321, col 6 of module lock_single>
+@!@!@ENDMSG 2774 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 321, col 11 to line 336, col 47 of module lock_single: 81
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 321, col 14 to line 321, col 48 of module lock_single: 81
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 322, col 14 to line 322, col 59 of module lock_single: 81
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 322, col 35 to line 322, col 59 of module lock_single: 162
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 322, col 24 to line 322, col 31 of module lock_single: 81
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 323, col 14 to line 323, col 61 of module lock_single: 81
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 323, col 36 to line 323, col 61 of module lock_single: 162
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 323, col 24 to line 323, col 32 of module lock_single: 81
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 324, col 14 to line 324, col 38 of module lock_single: 81
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 325, col 14 to line 325, col 48 of module lock_single: 81
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 326, col 14 to line 326, col 41 of module lock_single: 81
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 327, col 14 to line 327, col 59 of module lock_single: 81
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 328, col 14 to line 328, col 39 of module lock_single: 81
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 329, col 14 to line 329, col 38 of module lock_single: 81
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 330, col 14 to line 332, col 52 of module lock_single: 81
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 331, col 16 to line 332, col 52 of module lock_single: 1
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 330, col 23 to line 330, col 41 of module lock_single: 81
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 333, col 14 to line 336, col 47 of module lock_single: 81
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 334, col 16 to line 336, col 47 of module lock_single: 24
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 333, col 23 to line 333, col 38 of module lock_single: 81
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2774:0 @!@!@
+<MessagesOK line 339, col 1 to line 339, col 10 of module lock_single>
+@!@!@ENDMSG 2774 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 339, col 15 to line 340, col 38 of module lock_single: 81
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2202:0 @!@!@
+End of statistics.
+@!@!@ENDMSG 2202 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(37) at 2025-10-08 05:51:22: 125 states generated (3.834 s/min), 81 distinct states found (2.484 ds/min), 0 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2199:0 @!@!@
+125 states generated, 81 distinct states found, 0 states left on queue.
+@!@!@ENDMSG 2199 @!@!@
+@!@!@STARTMSG 2194:0 @!@!@
+The depth of the complete state graph search is 37.
+@!@!@ENDMSG 2194 @!@!@
+@!@!@STARTMSG 2268:0 @!@!@
+The average outdegree of the complete state graph is 1 (minimum is 0, the maximum 2 and the 95th percentile is 2).
+@!@!@ENDMSG 2268 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in 1995ms at (2025-10-08 05:51:22)
+@!@!@ENDMSG 2186 @!@!@
