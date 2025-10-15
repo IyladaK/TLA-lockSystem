@@ -6,7 +6,7 @@ EXTENDS lock_data
 (* --algorithm lock_system
 
 \*****************************
-\* Define global variables
+\* Define global variables HII
 \*****************************
 variables
   \* Variables for locks
@@ -579,7 +579,7 @@ Spec == Init /\ [][Next]_vars
 
 =============================================================================
 \* Modification History
-\* Last modified Wed Oct 15 15:43:27 CEST 2025 by 20241642
+\* Last modified Wed Oct 15 23:43:35 CEST 2025 by 20241642
 \* Last modified Wed Oct 15 10:06:38 CEST 2025 by 20241642
 \* Last modified Wed Sep 24 12:00:55 CEST 2025 by mvolk
 \* Created Thu Aug 28 11:30:07 CEST 2025 by mvolk
