@@ -70,26 +70,26 @@ MessagesOK == /\ Len(requests) <= NumShips
 \* Requirements on lock
 \*****************************
 \* The eastern pair of doors and the western pair of doors are never simultaneously open
-DoorsMutex == FALSE
+DoorsMutex == [](\A l \in Locks : ~(doorsOpen[l]["west"] /\ doorsOpen[l]["east"]))
 \* When the lower/higher pair of doors is open, the higher/lower valve is closed.
-DoorsOpenValvesClosed == FALSE
+DoorsOpenValvesClosed == [](\A l \in Locks : doorsOpen[l][LowSide(lockOrientation[l])] => ~valvesOpen[l][HighSide(lockOrientation[l])] /\
+                                             doorsOpen[l][HighSide(lockOrientation[l])] => ~valvesOpen[l][LowSide(lockOrientation[l])])
 \* The lower/higher pair of doors is only open when the water level in the lock is low/high
-DoorsOpenWaterlevelRight  == FALSE
-\* Always if a ship requests to enter a lock, the ship will eventually be inside the lock.
-RequestLockFulfilled == FALSE
-\* Water level is infinitely many times high/low
-WaterlevelChange == FALSE
-\* Infinitely many times each ship does requests
-RequestsShips == FALSE
-\* Infinitely many times each ship reaches its end location
-ShipsReachGoals == FALSE
+DoorsOpenWaterlevelRight  == [](\A l \in Locks : doorsOpen[l][LowSide(lockOrientation[l])] => (waterLevel[l] = "low") /\
+                                                 doorsOpen[l][HighSide(lockOrientation[l])] => (waterLevel[l] = "high"))
+\* Always if a ship requests to enter a lock, the ship will eventually be inside the lock. DONE???????
+RequestLockFulfilled == [](\A s \in Ships: (\E r \in requests : r.ship = s => <>(shipLocation[s] = r.lock)))
+\* Water level is infinitely many times high/low DONE
+WaterlevelChange == \A l \in Locks : ([]<>(waterLevel[l] = "low") /\ []<>(waterLevel[l] = "high"))
+\* Infinitely many times each ship does requests DONE?
+RequestsShips == \A s \in Ships : []<>(\E r \in requests : r.ship = s)   
+\* Infinitely many times each ship reaches its end location DONE
+ShipsReachGoals == \A s in Ships: ([]<>(shipLocations[s] = EastEnd) /\ []<>(shipLocations[s] = WestEnd))
 \* The maximal ship capacity per location is not exceeded
-MaxShipsPerLocation == FALSE
-
-
+MaxShipsPerLocation == [](\A loc \in Locations : IF IsLock(loc) THEN Cardinality({\A s \in Ships : shipLocations[s] = loc}) \leq MaxShipsLock
+                                                 ELSE Cardinality({\A s \in Ships : shipLocations[s] = loc}) \leq MaxShipsLocation)
 
 end define;
-
 
 \*****************************
 \* Helper macros
