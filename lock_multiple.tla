@@ -72,19 +72,19 @@ MessagesOK == /\ Len(requests) <= NumShips
 \* The eastern pair of doors and the western pair of doors are never simultaneously open
 DoorsMutex == [](\A l \in Locks : ~(doorsOpen[l]["west"] /\ doorsOpen[l]["east"]))
 \* When the lower/higher pair of doors is open, the higher/lower valve is closed.
-DoorsOpenValvesClosed == [](\A l \in Locks : doorsOpen[l][LowSide(lockOrientation[l])] => ~valvesOpen[l][HighSide(lockOrientation[l])] /\
-                                             doorsOpen[l][HighSide(lockOrientation[l])] => ~valvesOpen[l][LowSide(lockOrientation[l])])
+DoorsOpenValvesClosed == [](\A l \in Locks : (doorsOpen[l][LowSide(lockOrientations[l])] => ~valvesOpen[l][HighSide(lockOrientations[l])]) /\
+                                             (doorsOpen[l][HighSide(lockOrientations[l])] => ~valvesOpen[l][LowSide(lockOrientations[l])]))
 \* The lower/higher pair of doors is only open when the water level in the lock is low/high
-DoorsOpenWaterlevelRight  == [](\A l \in Locks : doorsOpen[l][LowSide(lockOrientation[l])] => (waterLevel[l] = "low") /\
-                                                 doorsOpen[l][HighSide(lockOrientation[l])] => (waterLevel[l] = "high"))
+DoorsOpenWaterlevelRight  == [](\A l \in Locks : (doorsOpen[l][LowSide(lockOrientations[l])] => (waterLevel[l] = "low")) /\
+                                                 (doorsOpen[l][HighSide(lockOrientations[l])] => (waterLevel[l] = "high")))
 \* Always if a ship requests to enter a lock, the ship will eventually be inside the lock. DONE???????
-RequestLockFulfilled == [](\A s \in Ships: (\E r \in requests : r.ship = s => <>(shipLocation[s] = r.lock)))
+RequestLockFulfilled == [](\A s \in Ships: (\E r \in requests : r.ship = s => <>(shipLocations[s] = r.lock)))
 \* Water level is infinitely many times high/low DONE
 WaterlevelChange == \A l \in Locks : ([]<>(waterLevel[l] = "low") /\ []<>(waterLevel[l] = "high"))
 \* Infinitely many times each ship does requests DONE?
 RequestsShips == \A s \in Ships : []<>(\E r \in requests : r.ship = s)   
 \* Infinitely many times each ship reaches its end location DONE
-ShipsReachGoals == \A s in Ships: ([]<>(shipLocations[s] = EastEnd) /\ []<>(shipLocations[s] = WestEnd))
+ShipsReachGoals == \A s \in Ships: ([]<>(shipLocations[s] = EastEnd) /\ []<>(shipLocations[s] = WestEnd))
 \* The maximal ship capacity per location is not exceeded
 MaxShipsPerLocation == [](\A loc \in Locations : IF IsLock(loc) THEN Cardinality({\A s \in Ships : shipLocations[s] = loc}) \leq MaxShipsLock
                                                  ELSE Cardinality({\A s \in Ships : shipLocations[s] = loc}) \leq MaxShipsLocation)
@@ -244,27 +244,28 @@ fair process controlProcess = 0
 variables
     req = [ship |-> 0, lock |-> 0, side |-> ""],
     pendingRequests = << >>,
-    inUseLocks = [l \in Locks FALSE]
+    inUseLocks = [l \in Locks |-> FALSE]
 begin
     MainLoop:
         while TRUE do
     ControlStart:
-        read(queue, req);
+        read(requests, req);
         assert req.lock \in Locks /\ req.side \in LockSide;
     
             if pendingRequests = <<>> then
                 skip;
             elsif pendingRequests /= <<>> then
                 pendingRequests := Append(pendingRequests, req) 
+            end if;
     
-    
+        end while;
 end process;
 
 
 end algorithm; *)
 
 
-\* BEGIN TRANSLATION (chksum(pcal) = "199ef87a" /\ chksum(tla) = "5111c904")
+\* BEGIN TRANSLATION (chksum(pcal) = "5feb9369" /\ chksum(tla) = "ab5915c6")
 VARIABLES lockOrientations, doorsOpen, valvesOpen, waterLevel, shipLocations, 
           shipStates, lockCommand, requests, permissions, moved, pc
 
@@ -303,26 +304,30 @@ MessagesOK == /\ Len(requests) <= NumShips
 
 
 
-DoorsMutex == FALSE
+DoorsMutex == [](\A l \in Locks : ~(doorsOpen[l]["west"] /\ doorsOpen[l]["east"]))
 
-DoorsOpenValvesClosed == FALSE
+DoorsOpenValvesClosed == [](\A l \in Locks : (doorsOpen[l][LowSide(lockOrientations[l])] => ~valvesOpen[l][HighSide(lockOrientations[l])]) /\
+                                             (doorsOpen[l][HighSide(lockOrientations[l])] => ~valvesOpen[l][LowSide(lockOrientations[l])]))
 
-DoorsOpenWaterlevelRight  == FALSE
+DoorsOpenWaterlevelRight  == [](\A l \in Locks : (doorsOpen[l][LowSide(lockOrientations[l])] => (waterLevel[l] = "low")) /\
+                                                 (doorsOpen[l][HighSide(lockOrientations[l])] => (waterLevel[l] = "high")))
 
-RequestLockFulfilled == FALSE
+RequestLockFulfilled == [](\A s \in Ships: (\E r \in requests : r.ship = s => <>(shipLocations[s] = r.lock)))
 
-WaterlevelChange == FALSE
+WaterlevelChange == \A l \in Locks : ([]<>(waterLevel[l] = "low") /\ []<>(waterLevel[l] = "high"))
 
-RequestsShips == FALSE
+RequestsShips == \A s \in Ships : []<>(\E r \in requests : r.ship = s)
 
-ShipsReachGoals == FALSE
+ShipsReachGoals == \A s \in Ships: ([]<>(shipLocations[s] = EastEnd) /\ []<>(shipLocations[s] = WestEnd))
 
-MaxShipsPerLocation == FALSE
+MaxShipsPerLocation == [](\A loc \in Locations : IF IsLock(loc) THEN Cardinality({\A s \in Ships : shipLocations[s] = loc}) \leq MaxShipsLock
+                                                 ELSE Cardinality({\A s \in Ships : shipLocations[s] = loc}) \leq MaxShipsLocation)
 
-VARIABLE perm
+VARIABLES perm, req, pendingRequests, inUseLocks
 
 vars == << lockOrientations, doorsOpen, valvesOpen, waterLevel, shipLocations, 
-           shipStates, lockCommand, requests, permissions, moved, pc, perm >>
+           shipStates, lockCommand, requests, permissions, moved, pc, perm, 
+           req, pendingRequests, inUseLocks >>
 
 ProcSet == (Locks) \cup (Ships) \cup {0}
 
@@ -339,9 +344,13 @@ Init == (* Global variables *)
         /\ moved = [s \in Ships |-> FALSE]
         (* Process shipProcess *)
         /\ perm = [self \in Ships |-> [lock |-> 1, granted |-> FALSE]]
+        (* Process controlProcess *)
+        /\ req = [ship |-> 0, lock |-> 0, side |-> ""]
+        /\ pendingRequests = << >>
+        /\ inUseLocks = [l \in Locks |-> FALSE]
         /\ pc = [self \in ProcSet |-> CASE self \in Locks -> "LockWaitForCommand"
                                         [] self \in Ships -> "ShipNextIteration"
-                                        [] self = 0 -> "ControlStart"]
+                                        [] self = 0 -> "MainLoop"]
 
 LockWaitForCommand(self) == /\ pc[self] = "LockWaitForCommand"
                             /\ lockCommand[self].command /= "finished"
@@ -358,7 +367,8 @@ LockWaitForCommand(self) == /\ pc[self] = "LockWaitForCommand"
                             /\ UNCHANGED << lockOrientations, waterLevel, 
                                             shipLocations, shipStates, 
                                             lockCommand, requests, permissions, 
-                                            moved, perm >>
+                                            moved, perm, req, pendingRequests, 
+                                            inUseLocks >>
 
 LockUpdateWaterLevel(self) == /\ pc[self] = "LockUpdateWaterLevel"
                               /\ IF (valvesOpen[self])["low"]
@@ -378,7 +388,8 @@ LockUpdateWaterLevel(self) == /\ pc[self] = "LockUpdateWaterLevel"
                                               valvesOpen, shipLocations, 
                                               shipStates, lockCommand, 
                                               requests, permissions, moved, 
-                                              perm >>
+                                              perm, req, pendingRequests, 
+                                              inUseLocks >>
 
 LockCommandFinished(self) == /\ pc[self] = "LockCommandFinished"
                              /\ lockCommand' = [lockCommand EXCEPT ![self].command = "finished"]
@@ -387,7 +398,8 @@ LockCommandFinished(self) == /\ pc[self] = "LockCommandFinished"
                                              valvesOpen, waterLevel, 
                                              shipLocations, shipStates, 
                                              requests, permissions, moved, 
-                                             perm >>
+                                             perm, req, pendingRequests, 
+                                             inUseLocks >>
 
 lockProcess(self) == LockWaitForCommand(self) \/ LockUpdateWaterLevel(self)
                         \/ LockCommandFinished(self)
@@ -412,7 +424,8 @@ ShipNextIteration(self) == /\ pc[self] = "ShipNextIteration"
                                            valvesOpen, waterLevel, 
                                            shipLocations, shipStates, 
                                            lockCommand, requests, permissions, 
-                                           moved, perm >>
+                                           moved, perm, req, pendingRequests, 
+                                           inUseLocks >>
 
 ShipGoalReachedEast(self) == /\ pc[self] = "ShipGoalReachedEast"
                              /\ shipStates' = [shipStates EXCEPT ![self] = "goal_reached"]
@@ -421,7 +434,8 @@ ShipGoalReachedEast(self) == /\ pc[self] = "ShipGoalReachedEast"
                                              valvesOpen, waterLevel, 
                                              shipLocations, lockCommand, 
                                              requests, permissions, moved, 
-                                             perm >>
+                                             perm, req, pendingRequests, 
+                                             inUseLocks >>
 
 ShipMoveEast(self) == /\ pc[self] = "ShipMoveEast"
                       /\ IF perm[self].granted
@@ -434,7 +448,8 @@ ShipMoveEast(self) == /\ pc[self] = "ShipMoveEast"
                       /\ pc' = [pc EXCEPT ![self] = "ShipNextIteration"]
                       /\ UNCHANGED << lockOrientations, doorsOpen, valvesOpen, 
                                       waterLevel, shipStates, lockCommand, 
-                                      requests, permissions, perm >>
+                                      requests, permissions, perm, req, 
+                                      pendingRequests, inUseLocks >>
 
 ShipRequestWest(self) == /\ pc[self] = "ShipRequestWest"
                          /\ requests' = Append(requests, ([ship |-> self, lock |-> GetLock(shipLocations[self]+1), side |-> "west"]))
@@ -442,7 +457,8 @@ ShipRequestWest(self) == /\ pc[self] = "ShipRequestWest"
                          /\ UNCHANGED << lockOrientations, doorsOpen, 
                                          valvesOpen, waterLevel, shipLocations, 
                                          shipStates, lockCommand, permissions, 
-                                         moved, perm >>
+                                         moved, perm, req, pendingRequests, 
+                                         inUseLocks >>
 
 ShipWaitForWest(self) == /\ pc[self] = "ShipWaitForWest"
                          /\ (permissions[self]) /= <<>>
@@ -454,7 +470,8 @@ ShipWaitForWest(self) == /\ pc[self] = "ShipWaitForWest"
                          /\ UNCHANGED << lockOrientations, doorsOpen, 
                                          valvesOpen, waterLevel, shipLocations, 
                                          shipStates, lockCommand, requests, 
-                                         moved >>
+                                         moved, req, pendingRequests, 
+                                         inUseLocks >>
 
 ShipRequestEastInLock(self) == /\ pc[self] = "ShipRequestEastInLock"
                                /\ requests' = Append(requests, ([ship |-> self, lock |-> GetLock(shipLocations[self]), side |-> "east"]))
@@ -463,7 +480,8 @@ ShipRequestEastInLock(self) == /\ pc[self] = "ShipRequestEastInLock"
                                                valvesOpen, waterLevel, 
                                                shipLocations, shipStates, 
                                                lockCommand, permissions, moved, 
-                                               perm >>
+                                               perm, req, pendingRequests, 
+                                               inUseLocks >>
 
 ShipWaitForEastInLock(self) == /\ pc[self] = "ShipWaitForEastInLock"
                                /\ (permissions[self]) /= <<>>
@@ -475,7 +493,9 @@ ShipWaitForEastInLock(self) == /\ pc[self] = "ShipWaitForEastInLock"
                                /\ UNCHANGED << lockOrientations, doorsOpen, 
                                                valvesOpen, waterLevel, 
                                                shipLocations, shipStates, 
-                                               lockCommand, requests, moved >>
+                                               lockCommand, requests, moved, 
+                                               req, pendingRequests, 
+                                               inUseLocks >>
 
 ShipTurnAround(self) == /\ pc[self] = "ShipTurnAround"
                         /\ shipStates' = [shipStates EXCEPT ![self] = IF shipLocations[self] = WestEnd THEN "go_to_east" ELSE "go_to_west"]
@@ -483,7 +503,8 @@ ShipTurnAround(self) == /\ pc[self] = "ShipTurnAround"
                         /\ UNCHANGED << lockOrientations, doorsOpen, 
                                         valvesOpen, waterLevel, shipLocations, 
                                         lockCommand, requests, permissions, 
-                                        moved, perm >>
+                                        moved, perm, req, pendingRequests, 
+                                        inUseLocks >>
 
 ShipGoalReachedWest(self) == /\ pc[self] = "ShipGoalReachedWest"
                              /\ shipStates' = [shipStates EXCEPT ![self] = "goal_reached"]
@@ -492,7 +513,8 @@ ShipGoalReachedWest(self) == /\ pc[self] = "ShipGoalReachedWest"
                                              valvesOpen, waterLevel, 
                                              shipLocations, lockCommand, 
                                              requests, permissions, moved, 
-                                             perm >>
+                                             perm, req, pendingRequests, 
+                                             inUseLocks >>
 
 ShipMoveWest(self) == /\ pc[self] = "ShipMoveWest"
                       /\ IF perm[self].granted
@@ -505,7 +527,8 @@ ShipMoveWest(self) == /\ pc[self] = "ShipMoveWest"
                       /\ pc' = [pc EXCEPT ![self] = "ShipNextIteration"]
                       /\ UNCHANGED << lockOrientations, doorsOpen, valvesOpen, 
                                       waterLevel, shipStates, lockCommand, 
-                                      requests, permissions, perm >>
+                                      requests, permissions, perm, req, 
+                                      pendingRequests, inUseLocks >>
 
 ShipRequestEast(self) == /\ pc[self] = "ShipRequestEast"
                          /\ requests' = Append(requests, ([ship |-> self, lock |-> GetLock(shipLocations[self]-1), side |-> "east"]))
@@ -513,7 +536,8 @@ ShipRequestEast(self) == /\ pc[self] = "ShipRequestEast"
                          /\ UNCHANGED << lockOrientations, doorsOpen, 
                                          valvesOpen, waterLevel, shipLocations, 
                                          shipStates, lockCommand, permissions, 
-                                         moved, perm >>
+                                         moved, perm, req, pendingRequests, 
+                                         inUseLocks >>
 
 ShipWaitForEast(self) == /\ pc[self] = "ShipWaitForEast"
                          /\ (permissions[self]) /= <<>>
@@ -525,7 +549,8 @@ ShipWaitForEast(self) == /\ pc[self] = "ShipWaitForEast"
                          /\ UNCHANGED << lockOrientations, doorsOpen, 
                                          valvesOpen, waterLevel, shipLocations, 
                                          shipStates, lockCommand, requests, 
-                                         moved >>
+                                         moved, req, pendingRequests, 
+                                         inUseLocks >>
 
 ShipRequestWestInLock(self) == /\ pc[self] = "ShipRequestWestInLock"
                                /\ requests' = Append(requests, ([ship |-> self, lock |-> GetLock(shipLocations[self]), side |-> "west"]))
@@ -534,7 +559,8 @@ ShipRequestWestInLock(self) == /\ pc[self] = "ShipRequestWestInLock"
                                                valvesOpen, waterLevel, 
                                                shipLocations, shipStates, 
                                                lockCommand, permissions, moved, 
-                                               perm >>
+                                               perm, req, pendingRequests, 
+                                               inUseLocks >>
 
 ShipWaitForWestInLock(self) == /\ pc[self] = "ShipWaitForWestInLock"
                                /\ (permissions[self]) /= <<>>
@@ -546,7 +572,9 @@ ShipWaitForWestInLock(self) == /\ pc[self] = "ShipWaitForWestInLock"
                                /\ UNCHANGED << lockOrientations, doorsOpen, 
                                                valvesOpen, waterLevel, 
                                                shipLocations, shipStates, 
-                                               lockCommand, requests, moved >>
+                                               lockCommand, requests, moved, 
+                                               req, pendingRequests, 
+                                               inUseLocks >>
 
 shipProcess(self) == ShipNextIteration(self) \/ ShipGoalReachedEast(self)
                         \/ ShipMoveEast(self) \/ ShipRequestWest(self)
@@ -559,27 +587,48 @@ shipProcess(self) == ShipNextIteration(self) \/ ShipGoalReachedEast(self)
                         \/ ShipRequestWestInLock(self)
                         \/ ShipWaitForWestInLock(self)
 
+MainLoop == /\ pc[0] = "MainLoop"
+            /\ pc' = [pc EXCEPT ![0] = "ControlStart"]
+            /\ UNCHANGED << lockOrientations, doorsOpen, valvesOpen, 
+                            waterLevel, shipLocations, shipStates, lockCommand, 
+                            requests, permissions, moved, perm, req, 
+                            pendingRequests, inUseLocks >>
+
 ControlStart == /\ pc[0] = "ControlStart"
-                /\ TRUE
-                /\ pc' = [pc EXCEPT ![0] = "Done"]
+                /\ requests /= <<>>
+                /\ req' = Head(requests)
+                /\ requests' = Tail(requests)
+                /\ Assert(req'.lock \in Locks /\ req'.side \in LockSide, 
+                          "Failure of assertion at line 253, column 9.")
+                /\ IF pendingRequests = <<>>
+                      THEN /\ TRUE
+                           /\ UNCHANGED pendingRequests
+                      ELSE /\ IF pendingRequests /= <<>>
+                                 THEN /\ pendingRequests' = Append(pendingRequests, req')
+                                 ELSE /\ TRUE
+                                      /\ UNCHANGED pendingRequests
+                /\ pc' = [pc EXCEPT ![0] = "MainLoop"]
                 /\ UNCHANGED << lockOrientations, doorsOpen, valvesOpen, 
                                 waterLevel, shipLocations, shipStates, 
-                                lockCommand, requests, permissions, moved, 
-                                perm >>
+                                lockCommand, permissions, moved, perm, 
+                                inUseLocks >>
 
-controlProcess == ControlStart
+controlProcess == MainLoop \/ ControlStart
 
 Next == controlProcess
            \/ (\E self \in Locks: lockProcess(self))
            \/ (\E self \in Ships: shipProcess(self))
 
-Spec == Init /\ [][Next]_vars
+Spec == /\ Init /\ [][Next]_vars
+        /\ \A self \in Locks : WF_vars(lockProcess(self))
+        /\ \A self \in Ships : WF_vars(shipProcess(self))
+        /\ WF_vars(controlProcess)
 
 \* END TRANSLATION 
 
 =============================================================================
 \* Modification History
-\* Last modified Wed Oct 15 23:54:03 CEST 2025 by 20241642
+\* Last modified Thu Oct 16 17:52:54 CEST 2025 by 20241642
 \* Last modified Wed Oct 15 10:06:38 CEST 2025 by 20241642
 \* Last modified Wed Sep 24 12:00:55 CEST 2025 by mvolk
 \* Created Thu Aug 28 11:30:07 CEST 2025 by mvolk
