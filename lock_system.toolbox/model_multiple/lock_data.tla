@@ -21,16 +21,16 @@ ASSUME NumLocks \in Nat /\ NumLocks >= 1
 \*****************************
 
 \* Locks
-Locks == 1..NumLocks
+Locks == 1..NumLocks \* this defines the lock IDs
 \* Ships have higher ids than locks
 \* This is needed to avoid overlap with the lock process ids
-Ships == (NumLocks+1)..(NumLocks+NumShips)
+Ships == (NumLocks+1)..(NumLocks+NumShips) \* this defines the ship IDs
 \* Even locations are outside lock
 \* Odd locations are inside lock: location i corresponds to lock (i+1)/2
 Locations == 0..NumLocks*2
 
 \* Data types
-LockOrientation == {"west_low", "east_low"}
+LockOrientation == {"west_low", "east_low"} \* which side of the water level is lower
 LockSide == {"west", "east"}
 ValveSide == {"low", "high"}
 WaterLevel == {"low", "high"}
@@ -60,5 +60,6 @@ IsLock(location) == location % 2 = 1
 
 =============================================================================
 \* Modification History
+\* Last modified Tue Oct 07 09:44:17 CEST 2025 by iyladakeekarjai
 \* Last modified Wed Sep 24 10:40:42 CEST 2025 by mvolk
 \* Created Thu Aug 28 11:30:37 CEST 2025 by mvolk

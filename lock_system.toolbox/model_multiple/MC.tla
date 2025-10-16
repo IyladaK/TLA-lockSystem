@@ -2,25 +2,25 @@
 EXTENDS lock_system, TLC
 
 \* CONSTANT definitions @modelParameterConstants:0MaxShipsLocation
-const_175870806160890000 == 
+const_176065131398943000 == 
 2
 ----
 
 \* CONSTANT definitions @modelParameterConstants:1NumShips
-const_175870806160891000 == 
+const_176065131399044000 == 
 3
 ----
 
 \* CONSTANT definitions @modelParameterConstants:2NumLocks
-const_175870806160892000 == 
+const_176065131399045000 == 
 2
 ----
 
 \* CONSTANT definitions @modelParameterConstants:3MaxShipsLock
-const_175870806160893000 == 
+const_176065131399046000 == 
 1
 ----
 
 =============================================================================
 \* Modification History
-\* Created Wed Sep 24 12:01:01 CEST 2025 by mvolk
+\* Created Thu Oct 16 23:48:33 CEST 2025 by iyladakeekarjai

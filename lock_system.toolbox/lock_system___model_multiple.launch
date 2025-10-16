@@ -2,23 +2,32 @@
 <launchConfiguration type="org.lamport.tla.toolbox.tool.tlc.modelCheck">
     <stringAttribute key="configurationName" value="model_multiple"/>
     <intAttribute key="distributedFPSetCount" value="0"/>
-    <stringAttribute key="distributedNetworkInterface" value="169.254.223.109"/>
+    <stringAttribute key="distributedNetworkInterface" value="131.155.162.129"/>
     <intAttribute key="distributedNodesCount" value="1"/>
     <stringAttribute key="distributedTLC" value="off"/>
-    <intAttribute key="fpIndex" value="0"/>
+    <intAttribute key="fpIndex" value="95"/>
     <intAttribute key="maxHeapSize" value="25"/>
     <stringAttribute key="modelBehaviorInit" value=""/>
     <stringAttribute key="modelBehaviorNext" value=""/>
     <stringAttribute key="modelBehaviorSpec" value="Spec"/>
     <intAttribute key="modelBehaviorSpecType" value="1"/>
-    <stringAttribute key="modelBehaviorVars" value="lockOrientations, requests, moved, shipLocations, pc, shipStates, permissions, valvesOpen, waterLevel, perm, lockCommand, doorsOpen"/>
+    <stringAttribute key="modelBehaviorVars" value="lockOrientations, requests, moved, shipLocations, pc, inUseLocks, shipStates, permissions, req, valvesOpen, waterLevel, perm, lockCommand, doorsOpen"/>
     <stringAttribute key="modelComments" value=""/>
     <booleanAttribute key="modelCorrectnessCheckDeadlock" value="true"/>
     <listAttribute key="modelCorrectnessInvariants">
         <listEntry value="1TypeOK"/>
         <listEntry value="1MessagesOK"/>
+        <listEntry value="1MaxShipsPerLocation"/>
     </listAttribute>
-    <listAttribute key="modelCorrectnessProperties"/>
+    <listAttribute key="modelCorrectnessProperties">
+        <listEntry value="1DoorsMutex"/>
+        <listEntry value="1DoorsOpenValvesClosed"/>
+        <listEntry value="1DoorsOpenWaterlevelRight"/>
+        <listEntry value="0RequestLockFulfilled"/>
+        <listEntry value="1WaterlevelChange"/>
+        <listEntry value="1RequestsShips"/>
+        <listEntry value="1ShipsReachGoals"/>
+    </listAttribute>
     <intAttribute key="modelEditorOpenTabs" value="8"/>
     <stringAttribute key="modelExpressionEval" value=""/>
     <listAttribute key="modelParameterConstants">
