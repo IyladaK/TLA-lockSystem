@@ -77,7 +77,7 @@ DoorsMutex ==
     ~(doorsOpen["west"] = TRUE /\ doorsOpen["east"] = TRUE)
 \* When the lower/higher pair of doors is open, the higher/lower valve is closed.
 DoorsOpenValvesClosed == /\ (doorsOpen[LowSide(lockOrientation)] => ~ valvesOpen["high"]) 
-                         /\ (doorsOpen[HighSide(lockOerientation)] => ~valvesOpen["low"])
+                         /\ (doorsOpen[HighSide(lockOrientation)] => ~valvesOpen["low"])
 \* The lower/higher pair of doors is only open when the water level in the lock is low/high
 DoorsOpenWaterlevelRight  == /\ (doorsOpen[LowSide(lockOrientation)] = TRUE => waterLevel = "low")
                              /\ (doorsOpen[HighSide(lockOrientation)] = TRUE => waterLevel = "high")
