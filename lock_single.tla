@@ -76,17 +76,15 @@ MessagesOK == /\ Len(requests) <= 1
 DoorsMutex == 
     ~(doorsOpen["west"] = TRUE /\ doorsOpen["east"] = TRUE)
 \* When the lower/higher pair of doors is open, the higher/lower valve is closed.
-DoorsOpenValvesClosed == 
-    \A v \in ValveSide:
-        valvesOpen[v] = TRUE => (\A d \in LockSide : doorsOpen[d] = FALSE)
+DoorsOpenValvesClosed == /\ (doorsOpen[LowSide(lockOrientation)] => ~ valvesOpen["high"]) 
+                         /\ (doorsOpen[HighSide(lockOerientation)] => ~valvesOpen["low"])
 \* The lower/higher pair of doors is only open when the water level in the lock is low/high
-DoorsOpenWaterlevelRight  == 
-    /\ (doorsOpen["west"] = TRUE => waterLevel = "low")
-    /\ (doorsOpen["east"] = TRUE => waterLevel = "high")
+DoorsOpenWaterlevelRight  == /\ (doorsOpen[LowSide(lockOrientation)] = TRUE => waterLevel = "low")
+                             /\ (doorsOpen[HighSide(lockOrientation)] = TRUE => waterLevel = "high")
 \* Always if the ship requests to enter the lock, the ship will eventually be inside the lock.
 RequestLockFulfilled == [](requests/=<<>> => <> InLock)
 \* Water level is infinitely many times high/low
-WaterlevelChange == []<>(waterLevel = "high" \/ waterLevel = "low")
+WaterlevelChange == []<>(waterLevel = "high") /\ []<>(waterLevel = "low")
 \* Infinitely many times the ship does requests
 RequestsShips == []<> (requests /= <<>>)
 \* Infinitely many times the ship reaches its end location
