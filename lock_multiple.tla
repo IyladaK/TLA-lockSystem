@@ -361,6 +361,7 @@ begin
                 lockCommand[req.lock] := [command |-> "change_door", open |-> FALSE, side|-> req.side];
     DoorClosedAfterEntry:
                 await lockCommand[req.lock].command = "finished";
+                inUseLocks[req.lock] := TRUE;
                 restoreShipState(req.ship);
                 goto ControlStart; 
             end if;     
@@ -417,6 +418,7 @@ begin
                 lockCommand[req.lock] := [command |-> "change_door", open |-> FALSE, side|-> req.side];
     DoorClosedAfterExit:
                 await lockCommand[req.lock].command = "finished";
+                inUseLocks[req.lock] := FALSE;
                 restoreShipState(req.ship);
                 goto ControlStart;         
             end if;
@@ -427,7 +429,7 @@ end process;
 end algorithm; *)
 
 
-\* BEGIN TRANSLATION (chksum(pcal) = "748f9b33" /\ chksum(tla) = "2eae9452")
+\* BEGIN TRANSLATION (chksum(pcal) = "35d58c2f" /\ chksum(tla) = "8347380f")
 VARIABLES lockOrientations, doorsOpen, valvesOpen, waterLevel, shipLocations, 
           shipStates, lockCommand, requests, permissions, moved, pc
 
@@ -955,18 +957,19 @@ CloseDoorAfterEntry == /\ pc[0] = "CloseDoorAfterEntry"
 
 DoorClosedAfterEntry == /\ pc[0] = "DoorClosedAfterEntry"
                         /\ lockCommand[req.lock].command = "finished"
+                        /\ inUseLocks' = [inUseLocks EXCEPT ![req.lock] = TRUE]
                         /\ perm' = [perm EXCEPT ![0][(req.ship)].granted = FALSE]
                         /\ moved' = [moved EXCEPT ![(req.ship)] = FALSE]
                         /\ pc' = [pc EXCEPT ![0] = "ControlStart"]
                         /\ UNCHANGED << lockOrientations, doorsOpen, 
                                         valvesOpen, waterLevel, shipLocations, 
                                         shipStates, lockCommand, requests, 
-                                        permissions, req, inUseLocks >>
+                                        permissions, req >>
 
 ExitRequest == /\ pc[0] = "ExitRequest"
                /\ IF IsLock(shipLocations[req.ship])
                      THEN /\ Assert(lockLocation(req.lock) = shipLocations[req.ship], 
-                                    "Failure of assertion at line 372, column 17.")
+                                    "Failure of assertion at line 373, column 17.")
                           /\ pc' = [pc EXCEPT ![0] = "CheckWaterLevelSideExit"]
                      ELSE /\ pc' = [pc EXCEPT ![0] = "MainLoop"]
                /\ UNCHANGED << lockOrientations, doorsOpen, valvesOpen, 
@@ -1096,13 +1099,13 @@ CloseDoorAfterExit == /\ pc[0] = "CloseDoorAfterExit"
 
 DoorClosedAfterExit == /\ pc[0] = "DoorClosedAfterExit"
                        /\ lockCommand[req.lock].command = "finished"
+                       /\ inUseLocks' = [inUseLocks EXCEPT ![req.lock] = FALSE]
                        /\ perm' = [perm EXCEPT ![0][(req.ship)].granted = FALSE]
                        /\ moved' = [moved EXCEPT ![(req.ship)] = FALSE]
                        /\ pc' = [pc EXCEPT ![0] = "ControlStart"]
                        /\ UNCHANGED << lockOrientations, doorsOpen, valvesOpen, 
                                        waterLevel, shipLocations, shipStates, 
-                                       lockCommand, requests, permissions, req, 
-                                       inUseLocks >>
+                                       lockCommand, requests, permissions, req >>
 
 controlProcess == MainLoop \/ ControlStart \/ EntryRequest
                      \/ CloseEastDoorEntry \/ WaitEastDoorClosedEntry
@@ -1137,7 +1140,7 @@ Spec == /\ Init /\ [][Next]_vars
 
 =============================================================================
 \* Modification History
-\* Last modified Thu Oct 16 23:30:50 CEST 2025 by iyladakeekarjai
+\* Last modified Fri Oct 17 08:10:18 CEST 2025 by iyladakeekarjai
 \* Last modified Wed Oct 15 23:54:03 CEST 2025 by 20241642
 \* Last modified Wed Oct 15 10:06:38 CEST 2025 by 20241642
 \* Last modified Wed Sep 24 12:00:55 CEST 2025 by mvolk
